@@ -27,23 +27,23 @@ const ModelAppDetailDetail: React.FC<ModelAppDetailDetailProps> = () => {
     const Application = data?.Application?.getApplication;
     const Config = {
       ConfigConversationStarter: {
-        prologue: Application?.prologue,
+        prologue: Application?.prologue || undefined,
       },
       ConfigModelService: {
-        llm: Application?.llm,
-        model: Application?.model,
+        llm: Application?.llm || undefined,
+        model: Application?.model || undefined,
         temperature: Application?.temperature,
         maxLength: Application?.maxLength,
         conversionWindowSize: Application?.conversionWindowSize,
       },
       ConfigKnowledge: {
-        knowledgebase: Application?.knowledgebase,
+        knowledgebase: Application?.knowledgebase || undefined,
         scoreThreshold: Application?.scoreThreshold,
         numDocuments: Application?.numDocuments,
-        docNullReturn: Application?.docNullReturn,
+        docNullReturn: Application?.docNullReturn || undefined,
       },
       ConfigPrompt: {
-        userPrompt: Application?.userPrompt,
+        userPrompt: Application?.userPrompt || undefined,
       },
       ConfigAudio: {},
       ConfigNext: {
