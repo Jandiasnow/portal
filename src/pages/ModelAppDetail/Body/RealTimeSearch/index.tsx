@@ -5,9 +5,9 @@ import React from 'react';
 import { useModalAppDetailContext } from '../../index';
 import Container from '../Container';
 
-interface ConfigNextProps {}
+interface RealTimeSearchProps {}
 
-const ConfigNext: React.FC<ConfigNextProps> = props => {
+const RealTimeSearch: React.FC<RealTimeSearchProps> = props => {
   const { configs, setConfigs } = useModalAppDetailContext();
   return (
     <Container
@@ -15,14 +15,16 @@ const ConfigNext: React.FC<ConfigNextProps> = props => {
         {
           key: 'switch',
           children: (
-            <Form.Item name="showNextGuide" style={{ marginBottom: 0 }}>
+            // @todo
+            <Form.Item name="showRespInfo" style={{ marginBottom: 0 }}>
               <Switch
                 onChange={v => {
                   setConfigs({
                     ...configs,
-                    ConfigNext: {
-                      ...configs?.ConfigNext,
-                      showNextGuide: v,
+                    RealTimeSearch: {
+                      ...configs?.RealTimeSearch,
+                      // @todo
+                      // showRespInfo: v,
                     },
                   });
                 }}
@@ -33,11 +35,11 @@ const ConfigNext: React.FC<ConfigNextProps> = props => {
         },
       ]}
       changeConfig
-      configKey="ConfigNext"
+      configKey="RealTimeSearch"
       icon={<KubeagiNextLead />}
       title={'问题引导'}
     ></Container>
   );
 };
 
-export default ConfigNext;
+export default RealTimeSearch;

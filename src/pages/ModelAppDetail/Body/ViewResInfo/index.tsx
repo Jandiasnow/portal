@@ -5,9 +5,9 @@ import React from 'react';
 import { useModalAppDetailContext } from '../../index';
 import Container from '../Container';
 
-interface ConfigNextProps {}
+interface ViewResInfoProps {}
 
-const ConfigNext: React.FC<ConfigNextProps> = props => {
+const ViewResInfo: React.FC<ViewResInfoProps> = props => {
   const { configs, setConfigs } = useModalAppDetailContext();
   return (
     <Container
@@ -15,14 +15,14 @@ const ConfigNext: React.FC<ConfigNextProps> = props => {
         {
           key: 'switch',
           children: (
-            <Form.Item name="showNextGuide" style={{ marginBottom: 0 }}>
+            <Form.Item name="showRespInfo" style={{ marginBottom: 0 }}>
               <Switch
                 onChange={v => {
                   setConfigs({
                     ...configs,
-                    ConfigNext: {
-                      ...configs?.ConfigNext,
-                      showNextGuide: v,
+                    ViewResInfo: {
+                      ...configs?.ViewResInfo,
+                      showRespInfo: v,
                     },
                   });
                 }}
@@ -33,11 +33,11 @@ const ConfigNext: React.FC<ConfigNextProps> = props => {
         },
       ]}
       changeConfig
-      configKey="ConfigNext"
+      configKey="ViewResInfo"
       icon={<KubeagiNextLead />}
-      title={'问题引导'}
+      title={'查看响应信息'}
     ></Container>
   );
 };
 
-export default ConfigNext;
+export default ViewResInfo;
