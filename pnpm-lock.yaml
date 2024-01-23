@@ -74,8 +74,8 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@yuntijs/arcadia-bff-sdk':
-        specifier: ^1.0.70
-        version: 1.0.70(@tenx-ui/materials@1.5.28)(antd@5.12.3)(react@18.2.0)(swr@2.2.4)
+        specifier: ^1.0.74
+        version: 1.0.74(@tenx-ui/materials@1.5.28)(antd@5.12.3)(react@18.2.0)(swr@2.2.4)
       '@yuntijs/react-markdown-lowcode-materials':
         specifier: 1.0.1
         version: 1.0.1(@types/react@18.2.30)(lodash@4.17.21)(react-dom@18.2.0)(react@18.2.0)
@@ -4653,7 +4653,7 @@ packages:
       immer: 10.0.3
       leva: 0.9.35(@types/react-dom@18.2.14)(@types/react@18.2.30)(react-dom@18.2.0)(react@18.2.0)
       lodash-es: 4.17.21
-      lucide-react: 0.312.0(react@18.2.0)
+      lucide-react: 0.314.0(react@18.2.0)
       polished: 4.2.2
       prism-react-renderer: 2.3.0(react@18.2.0)
       query-string: 8.1.0
@@ -7953,8 +7953,8 @@ packages:
       - debug
     dev: false
 
-  /@yuntijs/arcadia-bff-sdk@1.0.70(@tenx-ui/materials@1.5.28)(antd@5.12.3)(react@18.2.0)(swr@2.2.4):
-    resolution: {integrity: sha512-55iIgAR4q2r9LyvS6VsCRHdHtKcnnOPD18k+049C8KlkSPCyXRxIrZb8Ev4vUIyhj4AyDlkO6WjTSkku8c8qNA==}
+  /@yuntijs/arcadia-bff-sdk@1.0.74(@tenx-ui/materials@1.5.28)(antd@5.12.3)(react@18.2.0)(swr@2.2.4):
+    resolution: {integrity: sha512-sqvPPB6O5hkjLdSlw3N8UWIHHr9hRny/6GTa0Z7kSy9kfdkVf/BBE1ru8fTKMhs+jWZLuN5eP3g8LTgskJ4hsw==}
     peerDependencies:
       '@tenx-ui/materials': '>=1.5.8'
       antd: '>=5.4.0'
@@ -7964,7 +7964,7 @@ packages:
       '@tenx-ui/materials': 1.5.28(@ant-design/icons@5.2.6)(@types/react-dom@18.2.14)(@types/react@18.2.30)(antd@5.12.3)(dayjs@1.11.10)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@18.2.0)(react-is@18.2.0)(react-router-dom@6.17.0)(react@18.2.0)(typescript@5.0.4)
       antd: 5.12.3(react-dom@18.2.0)(react@18.2.0)
       graphql: 16.8.1
-      graphql-request: 6.1.0(graphql@16.8.1)
+      graphql-request: 5.2.0(graphql@16.8.1)
       graphql-tag: 2.12.6(graphql@16.8.1)
       query-string: 8.1.0
       react: 18.2.0
@@ -12055,18 +12055,6 @@ packages:
       - encoding
     dev: false
 
-  /graphql-request@6.1.0(graphql@16.8.1):
-    resolution: {integrity: sha512-p+XPfS4q7aIpKVcgmnZKhMNqhltk20hfXtkaIkTfjjmiKMJ5xrt5c743cL03y/K7y1rg3WrIC49xGiEQ4mxdNw==}
-    peerDependencies:
-      graphql: 14 - 16
-    dependencies:
-      '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.1)
-      cross-fetch: 3.1.8(patch_hash=24tbfnwgzykxgfdwqzt7s2zeeu)
-      graphql: 16.8.1
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
   /graphql-tag@2.12.6(graphql@16.8.1):
     resolution: {integrity: sha1-1EGlacHSU37xDKPRYztIclMptfE=}
     engines: {node: '>=10'}
@@ -14372,6 +14360,14 @@ packages:
 
   /lucide-react@0.312.0(react@18.2.0):
     resolution: {integrity: sha512-3UZsqyswRXjW4t+nw+InICewSimjPKHuSxiFYqTshv9xkK3tPPntXk/lvXc9pKlXIxm3v9WKyoxcrB6YHhP+dg==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
+  /lucide-react@0.314.0(react@18.2.0):
+    resolution: {integrity: sha512-c2zOW7TOyKxPCaSs1og2lFdoI3SR4iii3yrZJU2Zpdc78nOw4fUmrcFNultaCiwZcr4CyiKdzjMdvKNlBBk+UQ==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:

@@ -135,6 +135,20 @@ class DataSource$$Page extends React.Component {
     return this.$(name || 'formily_create')?.formRef?.current?.form;
   }
 
+  getTagColor(record) {
+    return (
+      this.utils.getDataSourceTypes(this)?.find(item => item.value === record?.type)?.tagColor ||
+      'primary'
+    );
+  }
+
+  getTagName(record) {
+    return (
+      this.utils.getDataSourceTypes(this)?.find(item => item.value === record?.type)?.children ||
+      '-'
+    );
+  }
+
   goDetail(e, { record }) {
     this.history?.push(`/data-source/detail/${record?.name}`);
   }
@@ -202,24 +216,25 @@ class DataSource$$Page extends React.Component {
   }
 
   initEditForm(record) {
-    if (!this?.editThis?.initEditForm) {
+    if (!this?.editThis?.form()) {
       this.state.timer && clearTimeout(this.state.timer);
-      this.setState({
-        timer: setTimeout(() => {
-          this.initEditForm({
-            ...record,
-            bucket: record?.oss?.bucket,
-            object: record?.oss?.object,
-            serverAddress: record?.endpoint?.url,
-            password: record?.endpoint?.auth?.password,
-            username: record?.endpoint?.auth?.username,
-            insecure: record?.endpoint?.insecure ? 'http' : 'https',
-          });
-        }, 200),
+      this.setState(() => {
+        setTimeout(() => {
+          this.initEditForm(record);
+        }, 200);
       });
       return;
     }
-    this?.editThis?.initEditForm(record);
+    this?.editThis?.form()?.setValues({
+      ...record,
+      bucket: record?.oss?.bucket,
+      object: record?.oss?.object,
+      serverAddress: record?.endpoint?.url,
+      password: record?.endpoint?.auth?.password,
+      username: record?.endpoint?.auth?.username,
+      insecure: record?.endpoint?.insecure ? 'http' : 'https',
+      recommendIntervalTime: record?.web?.recommendIntervalTime,
+    });
   }
 
   onSubmit(event) {
@@ -230,7 +245,7 @@ class DataSource$$Page extends React.Component {
       this.setState({
         modalLoading: true,
       });
-      const params = {
+      let params = {
         input: {
           name: v?.name,
           displayName: v?.displayName,
@@ -248,8 +263,27 @@ class DataSource$$Page extends React.Component {
               rootPassword: v?.password,
             },
           },
+          webinput: {
+            recommendIntervalTime: v?.recommendIntervalTime,
+          },
         },
       };
+      if (this?.editThis?.getType() === 'onLine') {
+        params = {
+          input: {
+            name: v?.name,
+            displayName: v?.displayName,
+            namespace: this.utils.getAuthData()?.project,
+            description: v?.description,
+            endpointinput: {
+              url: v?.serverAddress,
+            },
+            webinput: {
+              recommendIntervalTime: +v?.recommendIntervalTime,
+            },
+          },
+        };
+      }
       const api = {
         create: {
           name: 'createDatasource',
@@ -540,7 +574,12 @@ class DataSource$$Page extends React.Component {
                         this.props.useListDatasources?.data?.Datasource?.listDatasources?.nodes?.map(
                           item => ({
                             ...item,
-                            type: item.type || 'objectStorage',
+                            type:
+                              {
+                                web: 'onLine',
+                                oss: 'objectStorage',
+                                unknown: 'onLine',
+                              }[item.type] || 'web',
                           })
                         ) || []
                     )}
@@ -791,21 +830,11 @@ class DataSource$$Page extends React.Component {
                                                   __component_name="Tag"
                                                   bordered={false}
                                                   closable={false}
-                                                  color={__$$eval(
-                                                    () =>
-                                                      __$$context.utils
-                                                        .getDataSourceTypes(__$$context)
-                                                        ?.find(item => item.value === record.type)
-                                                        ?.tagColor || 'primary'
+                                                  color={__$$eval(() =>
+                                                    __$$context.getTagColor(record)
                                                   )}
                                                 >
-                                                  {__$$eval(
-                                                    () =>
-                                                      __$$context.utils
-                                                        .getDataSourceTypes(__$$context)
-                                                        ?.find(item => item.value === record.type)
-                                                        ?.children || '-'
-                                                  )}
+                                                  {__$$eval(() => __$$context.getTagName(record))}
                                                 </Tag>
                                               </Col>
                                             </Row>
